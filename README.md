@@ -62,7 +62,7 @@ tests/              offline unit and end-to-end tests
 ## Installation
 
 ```bash
-git clone https://github.com/<your-account>/SecureGenAI.git
+git clone https://github.com/pvteja/SecureGenAI.git
 cd SecureGenAI
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
