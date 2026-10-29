@@ -1,0 +1,12 @@
+# Offline smoke test: tiny random T5 + character tokenizer, runs on CPU in about a minute.
+# Checks that the pipeline works end to end. The numbers it produces mean nothing.
+data_path: data/sample_pairs.csv
+tiny_model: true
+max_length: 128
+batch_size: 4
+epochs: 2
+learning_rate: 1.0e-3
+beam_width: 2
+max_new_tokens: 32
+refine_iterations: 1
+output_dir: outputs/smoke

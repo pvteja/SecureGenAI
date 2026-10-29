@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "SecureGenAI: reference implementation"
+authors:
+  - family-names: Pandugayala
+    given-names: Venkata Pruthvi Teja
+  - family-names: Duggirala
+    given-names: Rohith Kumar Reddy
+  - family-names: Arun
+    given-names: Siddharth
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "SecureGenAI: A Generative AI Framework for Vulnerability-Aware Code Generation and Secure Software Development"
+  authors:
+    - family-names: Pandugayala
+      given-names: Venkata Pruthvi Teja
+    - family-names: Duggirala
+      given-names: Rohith Kumar Reddy
+    - family-names: Arun
+      given-names: Siddharth
+  collection-title: "IEEE Conference on Generative AI for Secure Systems (GAISS)"
+  year: 2026

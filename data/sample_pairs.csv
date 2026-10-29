@@ -1,0 +1,38 @@
+language,cwe_id,vulnerable_code,fixed_code
+python,CWE-89,"cur.execute(""SELECT * FROM users WHERE name = '"" + name + ""'"")","cur.execute(""SELECT * FROM users WHERE name = %s"", (name,))"
+java,CWE-89,"Statement st = conn.createStatement();
+ResultSet rs = st.executeQuery(""SELECT * FROM orders WHERE id = "" + orderId);","PreparedStatement ps = conn.prepareStatement(""SELECT * FROM orders WHERE id = ?"");
+ps.setInt(1, orderId);
+ResultSet rs = ps.executeQuery();"
+javascript,CWE-89,"db.query(""DELETE FROM sessions WHERE token = '"" + req.query.token + ""'"");","db.query(""DELETE FROM sessions WHERE token = ?"", [req.query.token]);"
+python,CWE-89,"sql = f""UPDATE accounts SET email = '{email}' WHERE id = {uid}""
+cur.execute(sql)","cur.execute(""UPDATE accounts SET email = %s WHERE id = %s"", (email, uid))"
+javascript,CWE-79,"document.getElementById(""greeting"").innerHTML = ""Hello "" + params.get(""name"");","document.getElementById(""greeting"").textContent = ""Hello "" + params.get(""name"");"
+python,CWE-79,"return ""<p>Results for "" + request.args[""q""] + ""</p>""","from markupsafe import escape
+return ""<p>Results for "" + escape(request.args[""q""]) + ""</p>"""
+java,CWE-79,"out.println(""<div>"" + request.getParameter(""comment"") + ""</div>"");","out.println(""<div>"" + StringEscapeUtils.escapeHtml4(request.getParameter(""comment"")) + ""</div>"");"
+javascript,CWE-79,res.send(`<h1>Welcome ${req.query.user}</h1>`);,"const escapeHtml = require(""escape-html"");
+res.send(`<h1>Welcome ${escapeHtml(req.query.user)}</h1>`);"
+c,CWE-120,"char buf[32];
+strcpy(buf, input);","char buf[32];
+strncpy(buf, input, sizeof(buf) - 1);
+buf[sizeof(buf) - 1] = '\0';"
+c,CWE-120,"char name[16];
+gets(name);","char name[16];
+if (fgets(name, sizeof(name), stdin) == NULL) { return -1; }"
+c,CWE-120,"char path[64];
+sprintf(path, ""/home/%s/data"", user);","char path[64];
+snprintf(path, sizeof(path), ""/home/%s/data"", user);"
+c,CWE-120,"char dst[8];
+memcpy(dst, src, len);","char dst[8];
+if (len > sizeof(dst)) { return -1; }
+memcpy(dst, src, len);"
+python,CWE-78,"os.system(""ping -c 1 "" + host)","subprocess.run([""ping"", ""-c"", ""1"", host], check=True)"
+javascript,CWE-78,"exec(""ls "" + req.query.dir, (err, out) => res.send(out));","execFile(""ls"", [req.query.dir], (err, out) => res.send(out));"
+java,CWE-78,"Runtime.getRuntime().exec(""convert "" + fileName + "" out.png"");","new ProcessBuilder(""convert"", fileName, ""out.png"").start();"
+python,CWE-78,"subprocess.call(""tar -xf "" + archive, shell=True)","subprocess.call([""tar"", ""-xf"", archive])"
+python,CWE-327,digest = hashlib.md5(password.encode()).hexdigest(),"salt = os.urandom(16)
+digest = hashlib.pbkdf2_hmac(""sha256"", password.encode(), salt, 600000)"
+java,CWE-327,"Cipher c = Cipher.getInstance(""DES/ECB/PKCS5Padding"");","Cipher c = Cipher.getInstance(""AES/GCM/NoPadding"");"
+javascript,CWE-327,"const hash = crypto.createHash(""sha1"").update(pw).digest(""hex"");",const hash = await argon2.hash(pw);
+python,CWE-327,"cipher = AES.new(key, AES.MODE_ECB)","cipher = AES.new(key, AES.MODE_GCM)"

@@ -1,0 +1,41 @@
+# SecureGenAI default configuration (Table I of the paper).
+# Point data_path at the full Vulnerability Fix Dataset CSV for real training.
+
+# data
+data_path: data/sample_pairs.csv
+vulnerable_col: vulnerable_code
+fixed_col: fixed_code
+cwe_col: cwe_id
+language_col: language
+cwe_classes: [CWE-89, CWE-79, CWE-120, CWE-78, CWE-327]
+split: [0.70, 0.15, 0.15]
+max_length: 256
+seed: 42
+
+# model: T5-Small (d_model 512, 6 layers, 8 heads)
+model_name: t5-small
+tiny_model: false
+dropout: 0.1
+use_security_head: true
+use_cwe_head: true
+
+# loss: L_total = lambda_gen * L_gen + lambda_sec * L_sec (+ lambda_cwe * L_cwe)
+lambda_gen: 1.0
+lambda_sec: 0.5
+lambda_cwe: 0.5
+
+# optimisation
+batch_size: 8
+epochs: 30
+learning_rate: 5.0e-5
+weight_decay: 0.01
+grad_clip: 1.0
+device: auto
+
+# decoding
+beam_width: 5
+max_new_tokens: 256
+refine_iterations: 2
+vuln_threshold: 0.5
+
+output_dir: outputs/run
